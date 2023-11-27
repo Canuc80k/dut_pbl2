@@ -48,18 +48,7 @@ int Calendar::getDay(int date, int month, int year) {
     return day;
 }
 
-int Calendar::getMonth() {
-    return this->month;
-}
-
-int Calendar::getYear() {
-    return this->year;
-}
-
-void Calendar::setMonth(int month) {
-    this->month = month;
-}
-
-void Calendar::setYear(int year) {
-    this->year = year;
-}
+int Calendar::getMonth() {return this->month;}
+int Calendar::getYear() {return this->year;}
+void Calendar::setMonth(int month) {this->month = month;}
+void Calendar::setYear(int year) {this->year = year;}
