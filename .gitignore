@@ -1,4 +1,2 @@
 *.exe
-.settings/
-.classpath
-.project
+temp/
