@@ -16,7 +16,7 @@ class Node {
 
 template <class T>
 class LinkedList {
-    private:
+    public:
         Node<T> *head;
 
     public:
@@ -47,7 +47,7 @@ class LinkedList {
         }
 
         void addAtIndex(int index, T item) {
-            if (index > length() || index < 0) return;
+            if (index > size() || index < 0) return;
             
             Node<T> *node = new Node<T>[1];
             node->data = item;
@@ -65,7 +65,7 @@ class LinkedList {
             }
         }
 
-        int length() {
+        int size() {
             int len = 0;
             Node<T> *temp = head;
             while (temp != NULL) {
@@ -93,7 +93,7 @@ class LinkedList {
 
         void removeAtIndex(int index) {
             if (head == NULL) return;
-            if (index >= length() || index < 0) return;
+            if (index >= size() || index < 0) return;
             if (index == 0) {
                 removeFirst();
                 return;
@@ -117,7 +117,7 @@ class LinkedList {
 
         T get(int index) {
             if (head == NULL) return NULL;
-            if (index >= length() || index < 0) return NULL;
+            if (index >= size() || index < 0) return NULL;
             if (index == 0) return head->data;
             
             int count = 0;
