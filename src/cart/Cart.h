@@ -3,8 +3,7 @@
 #include "./Drug.h"
 #include "./Drug.cpp"
 
-class Cart
-{
+class Cart {
 private:
     LinkedList<int> _DrugID;
     LinkedList<int> _DrugQuantity;
