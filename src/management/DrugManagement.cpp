@@ -1,17 +1,14 @@
 #pragma once
-#include "../Business/Drug.h"
-#include "../Business/Drug.cpp"
-#include "../Structure/LinkedList.cpp"
-#include "../Library/Console.cpp"
-#include "../Library/Table.cpp"
+#include "../Drug/Drug.h"
+#include "../Drug/Drug.cpp"
+#include "../datastructure/LinkedList.cpp"
 #include <fstream>
 #include <string>
 #include <iostream>
 #include <cstring>
 using namespace std;
 
-bool isValidDrugId(int drugID)
-{
+bool isValidDrugId(int drugID) {
     ifstream inFile("./Database/DrugDB/drug_ID.txt");
     string x;
     while (getline(inFile, x))
@@ -25,8 +22,7 @@ bool isValidDrugId(int drugID)
     return false;
 }
 
-void addDrugToDatabase(Drug &drug)
-{
+void addDrugToDatabase(Drug &drug) {
     // generate file path
     // start from main.cpp
     string fileName = to_string(drug.getID()) + ".txt";
@@ -54,8 +50,7 @@ void addDrugToDatabase(Drug &drug)
     outFile.close();
 }
 
-void addNewDrugToDataBase()
-{
+void addNewDrugToDataBase() {
     cout << spaceLineChoice + "New drug:\n";
     string name = getStringInput("Name");
     string disease = getStringInput("Desease");
@@ -79,8 +74,7 @@ void addNewDrugToDataBase()
     outFilesale.close();
 }
 
-Drug getDrugFromDatabase(int drugID)
-{
+Drug getDrugFromDatabase(int drugID) {
     string fileName = to_string(drugID) + ".txt";
     string filePath = "./Database/DrugDB/" + fileName;
 
@@ -117,8 +111,7 @@ Drug getDrugFromDatabase(int drugID)
 
     return Drug(drugID, name, disease, quantity, price, sale, description);
 }
-void deleteDrugFromDatabase(int drugID)
-{
+void deleteDrugFromDatabase(int drugID) {
     string filePath = "./Database/DrugDB/";
     string fileName = to_string(drugID) + ".txt";
 
@@ -139,8 +132,7 @@ void deleteDrugFromDatabase(int drugID)
     }
 }
 
-void updateDrugInDatabase(int drugID)
-{
+void updateDrugInDatabase(int drugID) {
     Drug drug = getDrugFromDatabase(drugID);
     string filePath = "./Database/DrugDB/";
     string fileName = to_string(drugID) + ".txt";
@@ -169,8 +161,7 @@ void updateDrugInDatabase(int drugID)
     printSuccess("Succesfully update!");
 }
 
-LinkedList<Drug> getAllDrug()
-{
+LinkedList<Drug> getAllDrug() {
     LinkedList<Drug> drugs;
 
     ifstream inFile("./Database/DrugDB/drug_ID.txt");
@@ -192,8 +183,7 @@ LinkedList<Drug> getAllDrug()
     return drugs;
 }
 
-void printDrug(Drug drug)
-{
+void printDrug(Drug drug) {
     TextTable table;
 
     table.add("ID");
@@ -215,9 +205,7 @@ void printDrug(Drug drug)
     cout << table << endl;
 }
 
-void printAllDrugs(LinkedList<Drug> drugs = getAllDrug())
-{
-
+void printAllDrugs(LinkedList<Drug> drugs = getAllDrug()) {
     TextTable table;
 
     table.add("ID");
@@ -243,8 +231,7 @@ void printAllDrugs(LinkedList<Drug> drugs = getAllDrug())
     cout << table << endl;
 }
 
-void searchByDrugsID()
-{
+void searchByDrugsID() {
     int id = getIntInput("Enter ID");
     if (!isValidDrugId(id))
     {
@@ -257,8 +244,7 @@ void searchByDrugsID()
     }
 }
 
-LinkedList<Drug> searchByDrugCase(string toSearch)
-{
+LinkedList<Drug> searchByDrugCase(string toSearch) {
     LinkedList<Drug> res;
     LinkedList<Drug> drugs = getAllDrug();
 
@@ -272,8 +258,7 @@ LinkedList<Drug> searchByDrugCase(string toSearch)
     return res;
 }
 
-void searchByDrugsName()
-{
+void searchByDrugsName() {
     string name = getStringInput("Enter name: ");
     LinkedList<Drug> drugs = searchByDrugCase(name);
 
@@ -287,12 +272,12 @@ void searchByDrugsName()
         printError("Invalid Name, please enter again!");
     }
 }
-void updateDrugQuantityInDatabase(int id, int quantity)
-{
+
+void updateDrugQuantityInDatabase(int id, int quantity) {
     updateLine("./Database/DrugDB/" + to_string(id) + ".txt", 3, quantity);
 }
-void updateSale(int drugID, int amount)
-{
+
+void updateSale(int drugID, int amount) {
     ifstream inFile("./Database/saleSummary.txt");
 
     string sale, line;
@@ -315,8 +300,7 @@ void updateSale(int drugID, int amount)
     updateLine("./Database/DrugDB/" + to_string(drugID) + ".txt", 5, new_sale);
 }
 
-LinkedList<Drug> getSaleManagement()
-{
+LinkedList<Drug> getSaleManagement() {
     ifstream inFile("./Database/saleSummary.txt");
     LinkedList<Drug> drugs;
 
@@ -335,8 +319,8 @@ LinkedList<Drug> getSaleManagement()
 
     return drugs;
 }
-void printSaleTable(LinkedList<Drug> drugs = getSaleManagement())
-{
+
+void printSaleTable(LinkedList<Drug> drugs = getSaleManagement()) {
     TextTable table;
 
     table.add("ID");

@@ -1,16 +1,13 @@
 #pragma once
-#include "../Business/Patient.h"
-#include "../Business/Patient.cpp"
-#include "../Structure/LinkedList.cpp"
-#include "../Library/Console.cpp"
-#include "../Library/Table.cpp"
+#include "../user/Patient.h"
+#include "../user/Patient.cpp"
+#include "../datastructure/LinkedList.cpp"
 #include <fstream>
 #include <string>
 #include <cstring>
 #include <iostream>
 
-bool isValidPatientID(int patientID)
-{
+bool isValidPatientID(int patientID) {
     ifstream inFile("./Database/UserDB/PatientDB/patient_ID.txt");
     string x;
     string line;
@@ -26,8 +23,7 @@ bool isValidPatientID(int patientID)
     return false;
 }
 
-void addPatientToDatabase(Patient &patient)
-{
+void addPatientToDatabase(Patient &patient) {
     // generate file path
     // start from main.cpp
     string fileName = "PATIENT_" + to_string(patient.getID()) + ".txt";
@@ -55,8 +51,7 @@ void addPatientToDatabase(Patient &patient)
     outFile.close();
 }
 
-Patient addNewPatient()
-{
+Patient addNewPatient() {
     cout << spaceLineChoice << "New patient:\n";
 
     string name = getStringInput("Name");
@@ -87,8 +82,7 @@ Patient addNewPatient()
     return patient;
 }
 
-Patient getPatientFromDatabase(int patientID)
-{
+Patient getPatientFromDatabase(int patientID) {
     // take file path
     // start from main.cpp
     string filePath = "./Database/UserDB/PatientDB/";
@@ -119,8 +113,7 @@ Patient getPatientFromDatabase(int patientID)
     return Patient(patientID, name, email, password, recs);
 }
 
-void deletePatientFromDatabase(int patientID)
-{
+void deletePatientFromDatabase(int patientID) {
     Patient patient = getPatientFromDatabase(patientID);
 
     string filePath = "./Database/UserDB/PatientDB/";
@@ -143,8 +136,7 @@ void deletePatientFromDatabase(int patientID)
     }
 }
 
-void updatePatientInDatabase(int patientID)
-{
+void updatePatientInDatabase(int patientID) {
     Patient oldPatient = getPatientFromDatabase(patientID);
     Patient patient = getPatientFromDatabase(patientID);
 
@@ -170,8 +162,7 @@ void updatePatientInDatabase(int patientID)
     updateLine("./Database/UserDB/user_ID.txt", to_string(oldPatient.getID()) + " " + oldPatient.getEmail() + " " + oldPatient.getPassword(), to_string(patient.getID()) + " " + patient.getEmail() + " " + patient.getPassword());
 }
 
-LinkedList<Patient> getAllPatient()
-{
+LinkedList<Patient> getAllPatient() {
     LinkedList<Patient> patients;
 
     ifstream inFile("./Database/UserDB/PatientDB/patient_ID.txt");
@@ -189,8 +180,7 @@ LinkedList<Patient> getAllPatient()
     return patients;
 }
 
-void printPatient(Patient &patient)
-{
+void printPatient(Patient &patient) {
     TextTable table;
 
     table.add("ID");
@@ -206,8 +196,7 @@ void printPatient(Patient &patient)
     cout << table << endl;
 }
 
-void printAllPatient(LinkedList<Patient> patients = getAllPatient())
-{
+void printAllPatient(LinkedList<Patient> patients = getAllPatient()) {
     TextTable table;
 
     table.add("ID");
@@ -227,8 +216,7 @@ void printAllPatient(LinkedList<Patient> patients = getAllPatient())
     cout << table << endl;
 }
 
-LinkedList<Patient> searchByPatientCase(string toSearch)
-{
+LinkedList<Patient> searchByPatientCase(string toSearch) {
     LinkedList<Patient> res;
     LinkedList<Patient> patients = getAllPatient();
 
@@ -243,8 +231,7 @@ LinkedList<Patient> searchByPatientCase(string toSearch)
     return res;
 }
 
-LinkedList<Patient> getPatientNameFromDatabase(string toSearch)
-{
+LinkedList<Patient> getPatientNameFromDatabase(string toSearch) {
     LinkedList<Patient> res;
     LinkedList<Patient> patients = getAllPatient();
 
@@ -259,8 +246,7 @@ LinkedList<Patient> getPatientNameFromDatabase(string toSearch)
     return res;
 }
 
-void searchPatientID()
-{
+void searchPatientID() {
     int id = getIntInput("Enter ID");
     if (!isValidPatientID(id))
     {
@@ -273,8 +259,7 @@ void searchPatientID()
     }
 }
 
-void searchByPatientName()
-{
+void searchByPatientName() {
     string name = getStringInput("Enter name");
     LinkedList<Patient> patients = searchByPatientCase(name);
     if (patients.length() > 0)

@@ -1,9 +1,6 @@
 #pragma once
-
-#include "../Business/Appointment.h"
-#include "../Business/Appointment.cpp"
-#include "../Library/Console.cpp"
-#include "../Library/Table.cpp"
+#include "../Calendar/Calendar.h"
+#include "../Calendar/Calendar.cpp"
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -12,8 +9,7 @@
 
 using namespace std;
 
-bool isValidID(int patientID)
-{
+bool isValidID(int patientID) {
     ifstream inFile("./Database/UserDB/PatientDB/patient_ID.txt");
     string x;
     string line;
@@ -28,8 +24,8 @@ bool isValidID(int patientID)
     inFile.close();
     return false;
 }
-int isFreeDate(int date, int month, int year)
-{
+
+int isFreeDate(int date, int month, int year) {
     int *check = new int[32];
     for (int i = 0; i < 32; i++)
         check[i] = -1;
@@ -53,8 +49,7 @@ int isFreeDate(int date, int month, int year)
     return check[date];
 }
 
-void addNewDayToDataBase(int date, int month, int year, int ID)
-{
+void addNewDayToDataBase(int date, int month, int year, int ID) {
     string fileName = to_string(year) + "." + to_string(month) + ".txt";
     string pathName = "./Database/AppointmentDB/" + fileName;
     fstream outFile(pathName, fstream::app);
@@ -68,8 +63,7 @@ void addNewDayToDataBase(int date, int month, int year, int ID)
     outNewFile.close();
 }
 
-LinkedList<string> getAllAppointment()
-{
+LinkedList<string> getAllAppointment() {
     LinkedList<string> appointments;
     ifstream inFile("./Database/AppointmentDB/AppointmentDB.txt");
     string x;
@@ -85,8 +79,7 @@ LinkedList<string> getAllAppointment()
     return appointments;
 }
 
-LinkedList<string> getAllAppointmentOfID(int ID)
-{
+LinkedList<string> getAllAppointmentOfID(int ID) {
     LinkedList<string> appointments;
 
     ifstream inFile("./Database/AppointmentDB/AppointmentDB.txt");

@@ -8,18 +8,17 @@
 using namespace std;
 
 Patient::Patient() : User(0, "", "", "") {
-    this->rec = new LinkedList<string>*;
+    this->rec = new LinkedList<string>;
     this->cart = Cart();
 }
 
-Patient::Patient(int id, string name, string email, string password, LinkedList<string> rec) : User(id, name, email, password) {
+Patient::Patient(int id, string name, string email, string password, LinkedList<string>* rec) : User(id, name, email, password) {
     this->rec = rec;
     this->cart = Cart();
 }
 
 Patient::~Patient() {
     delete rec;
-    delete cart;
 }
 
 Cart &Patient::getCart() {return this->cart;}
@@ -61,7 +60,7 @@ void Patient::printALLPatientReceipts() {
 }
 
 void Patient::addNewReceipt() {
-    addReceiptToDatabase(this->getID(), this->cart, this->rec);
+    addReceiptToDatabase(this->getID(), this->cart, *this->rec);
 }
 
 void Patient::deleteReceiptById(string id) {

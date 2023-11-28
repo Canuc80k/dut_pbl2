@@ -10,8 +10,7 @@ class Patient : public User {
 
     public:
         Patient();
-        Patient(int id, string name, string email, string password, LinkedList<string> revs)
-        ~Patient();
+        Patient(int id, string name, string email, string password, LinkedList<string>* recs);
 
         Cart &getCart();
         LinkedList<string>* getRec();

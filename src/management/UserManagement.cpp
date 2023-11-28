@@ -1,11 +1,9 @@
-#include "../Business/User.h"
-#include "../Business/User.cpp"
-#include "../Structure/LinkedList.cpp"
-#include "../Library/Console.cpp"
+#include "../user/User.h"
+#include "../user/User.cpp"
+#include "../datastructure/LinkedList.cpp"
 #include <fstream>
 
-User getUserLoginInfo(string info)
-{
+User getUserLoginInfo(string info) {
     string id;
     string email;
     string password;
@@ -20,8 +18,7 @@ User getUserLoginInfo(string info)
     return User(stoi(id), email, password);
 }
 
-LinkedList<User> getAllUserLoginInfo()
-{
+LinkedList<User> getAllUserLoginInfo() {
     LinkedList<User> usersInfo;
 
     ifstream inFile("./Database/UserDB/user_ID.txt");
@@ -41,8 +38,7 @@ LinkedList<User> getAllUserLoginInfo()
     return usersInfo;
 }
 
-int findUser(string email, string password)
-{
+int findUser(string email, string password) {
     LinkedList<User> users = getAllUserLoginInfo();
 
     for (int i = 0; i < users.length(); i++)

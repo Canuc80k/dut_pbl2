@@ -1,7 +1,6 @@
 #pragma once
-#include "../Library/Console.cpp"
-#include "../Business/Drug.cpp"
-#include "./PatientManagement.cpp"
+#include "../drug/Drug.cpp"
+#include "../management/PatientManagement.cpp"
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -9,8 +8,7 @@
 #include <cstring>
 using namespace std;
 
-string lineReceiptFormat(string key, string info)
-{
+string lineReceiptFormat(string key, string info) {
     string s = key;
     int n = 57 - key.length() - info.length();
     for (int i = 0; i < n; i++)
@@ -22,8 +20,7 @@ string lineReceiptFormat(string key, string info)
     return s;
 }
 
-string lineReceiptFormat(string qty, string item, string amount)
-{
+string lineReceiptFormat(string qty, string item, string amount) {
     string s = qty;
     int n = 6 - qty.length();
     for (int i = 0; i < n; i++)
@@ -41,8 +38,7 @@ string lineReceiptFormat(string qty, string item, string amount)
     return s;
 }
 
-void printReceipt(int patientID, string recID)
-{
+void printReceipt(int patientID, string recID) {
     ifstream inFile("./Page/Receipt.txt");
     ifstream inFileRec("./Database/ReceiptDB/" + to_string(patientID) + "_" + recID + ".txt");
 
@@ -97,8 +93,7 @@ void printReceipt(int patientID, string recID)
     inFile.close();
 }
 
-bool isValidReceiptID(string recID, Patient &patient)
-{
+bool isValidReceiptID(string recID, Patient &patient) {
     LinkedList<string> recs = patient.Rec();
 
     for (int i = 0; i < recs.length(); i++)
@@ -111,8 +106,7 @@ bool isValidReceiptID(string recID, Patient &patient)
     return false;
 }
 
-void getReceiptFromDatabase(int patientID, int recID)
-{
+void getReceiptFromDatabase(int patientID, int recID) {
     ifstream inFile("./Page/Receipt.txt");
     ifstream inFileRec("./Database/ReceiptDB/" + to_string(patientID) + "_" + to_string(recID) + ".txt");
 
@@ -167,8 +161,7 @@ void getReceiptFromDatabase(int patientID, int recID)
     inFile.close();
 }
 
-void getAllPatientReceipts(Patient &patient)
-{
+void getAllPatientReceipts(Patient &patient) {
     TextTable table;
     int n = patient.Rec().length();
     table.add("ID");
@@ -199,8 +192,7 @@ void getAllPatientReceipts(Patient &patient)
     cout << table << endl;
 }
 
-void addReceiptToDatabase(int patientID, Cart _Cart, LinkedList<string> Rec)
-{
+void addReceiptToDatabase(int patientID, Cart _Cart, LinkedList<string> Rec) {
     string recID = "REC#" + to_string(Rec.length() + 1);
     Rec.addLast(recID);
 
@@ -229,8 +221,7 @@ void addReceiptToDatabase(int patientID, Cart _Cart, LinkedList<string> Rec)
     // _Cart.emptyCart();
 }
 
-void deleteReceiptFromDatabase(int patientID, string recID)
-{
+void deleteReceiptFromDatabase(int patientID, string recID) {
     string fileName = to_string(patientID) + "_" + recID + ".txt";
     string filePath = "./Database/ReceiptDB/" + fileName;
 
