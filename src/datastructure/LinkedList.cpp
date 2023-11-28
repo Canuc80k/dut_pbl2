@@ -11,7 +11,7 @@ class Node {
         friend class LinkedList;
 
     public:
-    Node() {this->next = NULL;}
+    Node() {this->next = nullptr;}
 };
 
 template <class T>
@@ -20,17 +20,17 @@ class LinkedList {
         Node<T> *head;
 
     public:
-        LinkedList() {this->head = NULL;}
+        LinkedList() {this->head = nullptr;}
 
         void addLast(T item) {
             Node<T> *node = new Node<T>[1];
             node->data = item;
-            if (head == NULL) {
+            if (head == nullptr) {
                 head = node;
                 return;
             }
             Node<T> *temp = head;
-            while (temp->next != NULL)
+            while (temp->next != nullptr)
                 temp = temp->next;
             temp->next = node;
         }
@@ -38,7 +38,7 @@ class LinkedList {
         void addFirst(T item) {
             Node<T> *node = new Node<T>[1];
             node->data = item;
-            if (head == NULL) {
+            if (head == nullptr) {
                 head = node;
                 return;
             }
@@ -53,9 +53,9 @@ class LinkedList {
             node->data = item;
             int count = 0;
             Node<T> *temp = head;
-            while (temp != NULL && count < index) {
+            while (temp != nullptr && count < index) {
                 if (count == index - 1) {
-                    if (temp->next != NULL)
+                    if (temp->next != nullptr)
                         node->next = temp->next;
                     temp->next = node;
                     break;
@@ -68,7 +68,7 @@ class LinkedList {
         int size() {
             int len = 0;
             Node<T> *temp = head;
-            while (temp != NULL) {
+            while (temp != nullptr) {
                 len ++;
                 temp = temp->next;
             }
@@ -76,15 +76,15 @@ class LinkedList {
         }
 
         void remove() {
-            if (head == NULL) return;
-            if (head->next == NULL) {
-                head = NULL;
+            if (head == nullptr) return;
+            if (head->next == nullptr) {
+                head = nullptr;
                 return;
             }
             Node<T> *temp = head;
-            while (temp != NULL) {
-                if (temp->next->next == NULL) {
-                    temp->next = NULL;
+            while (temp != nullptr) {
+                if (temp->next->next == nullptr) {
+                    temp->next = nullptr;
                     break;
                 }
                 temp = temp->next;
@@ -92,7 +92,7 @@ class LinkedList {
         }
 
         void removeAtIndex(int index) {
-            if (head == NULL) return;
+            if (head == nullptr) return;
             if (index >= size() || index < 0) return;
             if (index == 0) {
                 removeFirst();
@@ -100,7 +100,7 @@ class LinkedList {
             }
             int count = 0;
             Node<T> *temp = head;
-            while (temp != NULL) {
+            while (temp != nullptr) {
                 if (count == index - 1) {
                     temp->next = temp->next->next;
                     break;
@@ -111,21 +111,22 @@ class LinkedList {
         }
 
         void removeFirst() {
-            if (head == NULL) return;
+            if (head == nullptr) return;
             head = head->next;
         }
 
-        T get(int index) {
-            if (head == NULL) return NULL;
-            if (index >= size() || index < 0) return NULL;
-            if (index == 0) return head->data;
+        T* get(int index) {
+            T* res = new T();
+
+            if (head == nullptr) return nullptr;
+            if (index >= size() || index < 0) return nullptr;
+            if (index == 0) {*res = head->data; return res;}
             
             int count = 0;
-            T res;
             Node<T> *temp = head;
-            while (temp != NULL) {
+            while (temp != nullptr) {
                 if (count++ == index) {
-                    res = temp->data;
+                    *res = temp->data;
                     break;
                 }
                 temp = temp->next;
@@ -134,7 +135,7 @@ class LinkedList {
         }
 
         bool empty() {
-            if (head == NULL) return true;
+            if (head == nullptr) return true;
             return false;
         }
 };

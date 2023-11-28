@@ -1,7 +1,7 @@
 3
-Clopidogrel
-Heart
-16
-180000
+aaa
+bbb
 0
-To prevent blood clots
+0
+0
+ccc

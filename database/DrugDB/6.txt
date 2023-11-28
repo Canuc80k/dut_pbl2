@@ -1,7 +1,7 @@
 6
-Berberin
-Stomache
-20
-8000
+aaa
+bbb
 0
-Treatment of colitis
+0
+0
+ccc
