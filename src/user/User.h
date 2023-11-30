@@ -15,7 +15,8 @@ class User {
         User(int, string);
         User(int, string, string);
         User(int, string, string, string);
-        
+        void operator=(User const &user);
+
         int getID();
         void setID(int);
         string getName();

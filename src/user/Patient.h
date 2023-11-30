@@ -1,6 +1,6 @@
 #pragma once
 #include "User.cpp"
-#include "Cart.cpp"
+#include "../cart/Cart.cpp"
 #include "../datastructure/LinkedList.cpp"
 
 class Patient : public User {
@@ -10,7 +10,10 @@ class Patient : public User {
 
     public:
         Patient();
+        Patient(int id, string name, string email, string password);
         Patient(int id, string name, string email, string password, LinkedList<string>* recs);
+        ~Patient();
+        void operator=(Patient const& patient);
 
         Cart &getCart();
         LinkedList<string>* getRec();

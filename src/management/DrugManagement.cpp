@@ -55,6 +55,7 @@ void addDrugToDatabase(Drug &drug) {
 void addNewDrugToDataBase(Drug &drug) {
     int id = getLastDrugId() + 1;
 
+    drug.setID(id);
     addDrugToDatabase(drug);
     updateLine("./database/DrugDB/lastID.txt", 1, to_string(id));
 

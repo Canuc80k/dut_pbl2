@@ -29,11 +29,18 @@ User::User(int id, string name, string email, string password) {
     this->password = password;
 }
 
+void User::operator=(User const& obj) {
+    this->id = obj.id;
+    this->name = obj.name;
+    this->email = obj.email;
+    this->password = obj.password;
+}
+
 int User::getID() {return this->id;}
 void User::setID(int id) {this->id = id;}
 string User::getName() {return this->name;}
 void User::setName(string name) {this->name = name;}
-string User::getEmail() {return this->password;}
-void User::setEmail(string email) {this->email = password;}
+string User::getEmail() {return this->email;}
+void User::setEmail(string email) {this->email = email;}
 string User::getPassword() {return this->password;}
 void User::setPassword(string password) {this->password = password;}

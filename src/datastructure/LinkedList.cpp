@@ -120,7 +120,11 @@ class LinkedList {
 
             if (head == nullptr) return nullptr;
             if (index >= size() || index < 0) return nullptr;
-            if (index == 0) {*res = head->data; return res;}
+            if (index == 0) {
+                cout << "AAA" << endl;
+                *res = head->data;
+                return res;
+            }
             
             int count = 0;
             Node<T> *temp = head;

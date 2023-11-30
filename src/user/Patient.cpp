@@ -1,9 +1,9 @@
 #include "Patient.h"
 #include "../calendar/Calendar.cpp"
 #include "../drug/Drug.h"
-#include "../management/DrugManagement.cpp"
-#include "../management/ReceiptManagement.cpp"
-#include "../management/AppointmentManagement.cpp"
+// #include "../management/DrugManagement.cpp"
+// #include "../management/ReceiptManagement.cpp"
+// #include "../management/AppointmentManagement.cpp"
 #include <iostream>
 using namespace std;
 
@@ -12,9 +12,21 @@ Patient::Patient() : User(0, "", "", "") {
     this->cart = Cart();
 }
 
+Patient::Patient(int id, string name, string email, string password) : User(id, name, email, password) {
+    this->rec = new LinkedList<string>;
+    this->cart = Cart();
+}
+
 Patient::Patient(int id, string name, string email, string password, LinkedList<string>* rec) : User(id, name, email, password) {
     this->rec = rec;
     this->cart = Cart();
+}
+
+void Patient::operator=(Patient const& obj) {
+    cout << "AAAAA" << endl;
+    *this = obj;
+    this->rec = obj.rec;
+    this->cart = obj.cart;
 }
 
 Patient::~Patient() {
@@ -52,19 +64,19 @@ void Patient::purchase() {
 }
 
 void Patient::searchByReceiptID(int id) {
-    getReceiptFromDatabase(this->getID(), id);
+    // getReceiptFromDatabase(this->getID(), id);
 }
 
 void Patient::printALLPatientReceipts() {
-    getAllPatientReceipts(*this);
+    // getAllPatientReceipts(*this);
 }
 
 void Patient::addNewReceipt() {
-    addReceiptToDatabase(this->getID(), this->cart, *this->rec);
+    // addReceiptToDatabase(this->getID(), this->cart, *this->rec);
 }
 
 void Patient::deleteReceiptById(string id) {
-    deleteReceiptFromDatabase(this->getID(), id);
+    // deleteReceiptFromDatabase(this->getID(), id);
 }
 
 void Patient::bookAnAppointment() {
