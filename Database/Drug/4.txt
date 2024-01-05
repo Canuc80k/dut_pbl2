@@ -1,0 +1,7 @@
+4
+Warfarin
+Heart
+10
+400000
+10
+To prevent blood clots

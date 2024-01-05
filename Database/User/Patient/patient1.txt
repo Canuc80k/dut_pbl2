@@ -1,0 +1,9 @@
+a
+a@gmail.com
+ag++ -O2 -s -static -Wl,--stack,66060288 -lm -x c++ "d:\Project\dut_pbl2\main.cpp" -o a && a
+20/12/2023
+receipt2
+30/1/2024
+31/1/2024
+receipt5
+23/12/2023
